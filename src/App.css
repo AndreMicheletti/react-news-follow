@@ -1,4 +1,3 @@
-
 .app-header {
     width: 100%;
     background-color: #424a89;
@@ -30,27 +29,29 @@
 }
 
 @media (max-width: 1210px) {
-    .app-container {
-        grid-template-columns: 40px auto 40px;
-    }
-    .app-header {
-        grid-template-columns: 40px auto 40px;
-    }
+    .app-container { grid-template-columns: 40px auto 40px; }
+    .app-header { grid-template-columns: 40px auto 40px; }
 }
-
 .app {
     grid-area: app;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 40px;
+    grid-row-gap: 0;
     grid-template-areas:
-            "top-headlines follow-headlines";
+        "form form"
+        "top-headlines follow-headlines";
 }
 @media (max-width: 1210px) {
     .app {
         grid-template-columns: 1fr;
         grid-template-areas:
+                "form"
                 "top-headlines"
                 "follow-headlines";
     }
 }
+
+.top-headlines { grid-area: top-headlines; }
+.follow-headlines { grid-area: follow-headlines; }
+.follow-form { grid-area: form; }

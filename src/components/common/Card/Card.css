@@ -1,0 +1,10 @@
+.main-card {
+    height: auto;
+    padding: 10px;
+}
+.main-card-header {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

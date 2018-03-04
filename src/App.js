@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
 import FollowHeadlines from './components/FollowHeadlines';
 import TopHeadlines from './components/TopHeadlines';
+import FollowForm from './components/FollowForm';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    showForm: false
+  };
+
+  renderForm() {
+    if (this.state.showForm) {
+      return (<FollowForm />);
+    }
+  }
+
+  toogleForm() {
+    const { showForm } = this.state;
+    this.setState({ showForm: !showForm})
+  }
 
   render() {
     return (
@@ -13,8 +29,9 @@ class App extends Component {
         </div>
         <div className="app-container">
           <div className="app">
+            {this.renderForm()}
             <TopHeadlines/>
-            <FollowHeadlines/>
+            <FollowHeadlines onAddClick={this.toogleForm.bind(this)}/>
           </div>
         </div>
         <div className="app-footer">

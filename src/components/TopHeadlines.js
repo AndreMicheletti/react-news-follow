@@ -36,16 +36,15 @@ class TopHeadlines extends React.Component {
   render() {
     return (
       <Card
-        className="top-headlines"
         title="This is top headlines"
-        size="small"
+        className="top-headlines"
         headerLeft={
           <Button onClick={() => this.loadTopHeadlines()}>
             Reload
-          </Button>
-        }
-      >
-        {this.renderHeadlines()}
+          </Button>}>
+        <div className="card-scroll">
+          {this.renderHeadlines()}
+        </div>
       </Card>
     );
   }

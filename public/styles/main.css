@@ -8,16 +8,12 @@ body {
     font-family: 'Ubuntu', sans-serif;
     background-color: #f3f3f3;
 }
-
-.main-card {
-    height: auto;
-    padding: 10px;
-}
-.main-card-header {
-    padding: 10px 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.ruler {
+    flex: 1;
+    height: 1px;
+    margin: auto auto;
+    margin-left: 20px;
+    border-bottom: 1px solid #333;
 }
 .card-scroll {
     height: 600px;
@@ -26,22 +22,6 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
     overflow: auto;
-}
-
-.ruler {
-    flex: 1;
-    height: 1px;
-    margin: auto auto;
-    margin-left: 20px;
-    border-bottom: 1px solid #333;
-}
-
-.top-headlines {
-    grid-area: top-headlines;
-}
-
-.follow-headlines {
-    grid-area: follow-headlines;
 }
 a { text-decoration: none; color: #3cb0fd; }
 a:hover { color: #2f86bf }

@@ -11,10 +11,18 @@
     color: #1b1b1b;
 }
 .headline-content {
-    padding: 12px;
+    padding: 0;
+}
+.headline-content img {
+    width: 100%;
+}
+.headline-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
 }
 .note {
     color: #8a8a8a;
     text-align: right;
-    margin-top: 10px;
 }
