@@ -8,61 +8,6 @@ body {
     font-family: 'Ubuntu', sans-serif;
     background-color: #f3f3f3;
 }
-.app-header {
-    width: 100%;
-    background-color: #424a89;
-    padding: 20px 0;
-    box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.25);
-    color: #fff;
-    margin-bottom: 20px;
-    display: grid;
-    grid-template-columns: auto 1170px auto;
-    grid-template-areas:
-            ". app-name .";
-}
-.app-header h1 {
-    grid-area: app-name;
-}
-.app-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 50px 10px;
-    color: #6c6c6c;
-}
-.app-container {
-    display: grid;
-    grid-template-columns: auto 1170px auto;
-    grid-template-areas:
-        ". app .";
-}
-
-@media (max-width: 1210px) {
-    .app-container {
-        grid-template-columns: 40px auto 40px;
-    }
-    .app-header {
-        grid-template-columns: 40px auto 40px;
-    }
-}
-
-.app {
-    grid-area: app;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 40px;
-    grid-template-areas:
-        "top-headlines follow-headlines";
-}
-@media (max-width: 1210px) {
-    .app {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "top-headlines"
-            "follow-headlines";
-    }
-}
 
 .main-card {
     height: auto;
@@ -97,49 +42,6 @@ body {
 
 .follow-headlines {
     grid-area: follow-headlines;
-}
-
-.headline-card {
-    background-color: #ffffff;
-    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
-    margin: 8px 20px;
-    color: #151515;
-    transition: background-color .4s;
-}
-.headline-card:hover { color: #151515; background-color: rgba(255, 212, 0, 0.35) }
-.headline-title {
-    padding: 22px;
-    color: #1b1b1b;
-}
-.headline-content {
-    padding: 12px;
-}
-.note {
-    color: #8a8a8a;
-    text-align: right;
-}
-
-.btn {
-    border: none;
-    border-radius: 4px;
-    color: #ffffff;
-    font-size: 20px;
-    background: #6acf63;
-    font-weight: 600;
-    padding: 10px 20px 10px 20px;
-    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
-    text-decoration: none;
-    margin: 8px;
-}
-.btn:active{ box-shadow: inset 0 2px 2px 1px rgba(0, 0, 0, 0.2) }
-.btn:hover {
-    background: #79ee71;
-    text-decoration: none;
-    cursor: pointer;
-}
-.btn-sm {
-    padding: 5px 10px 5px 10px;
-    font-size: 16px;
 }
 a { text-decoration: none; color: #3cb0fd; }
 a:hover { color: #2f86bf }

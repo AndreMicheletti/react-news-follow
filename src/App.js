@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FollowHeadlines from './components/FollowHeadlines';
 import TopHeadlines from './components/TopHeadlines';
+import './App.css';
 
 class App extends Component {
 

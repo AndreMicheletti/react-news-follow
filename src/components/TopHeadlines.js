@@ -1,5 +1,9 @@
 import React from 'react';
-import Headline from './Headline';
+import {
+  Headline,
+  Card,
+  Button
+} from "./common";
 import API from '../services';
 
 class TopHeadlines extends React.Component {
@@ -31,18 +35,18 @@ class TopHeadlines extends React.Component {
 
   render() {
     return (
-      <div className="main-card top-headlines">
-        <div className="main-card-header">
-          <h2>This is top headlines</h2>
-          <div className="ruler" />
-          <button onClick={() => this.loadTopHeadlines()} className="btn btn-sm">
+      <Card
+        className="top-headlines"
+        title="This is top headlines"
+        size="small"
+        headerLeft={
+          <Button onClick={() => this.loadTopHeadlines()}>
             Reload
-          </button>
-        </div>
-        <div className="card-scroll">
-          {this.renderHeadlines()}
-        </div>
-      </div>
+          </Button>
+        }
+      >
+        {this.renderHeadlines()}
+      </Card>
     );
   }
 }
