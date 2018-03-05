@@ -1,16 +1,12 @@
 import React from 'react';
-import { Card, Button } from './common';
+import { Card } from './common';
 
 class FollowHeadlines extends React.Component {
   render() {
     return (
       <Card
         title="This is follow headlines"
-        className="follow-headlines"
-        headerLeft={
-          <Button onClick={this.props.onAddClick}>
-            Add Follow
-          </Button>}>
+        className="follow-headlines">
         <div className="card-scroll">
 
         </div>

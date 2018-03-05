@@ -1,0 +1,23 @@
+.input-text {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 2px 2px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+}
+.input-text input {
+    color: #333333;
+    padding: 15px;
+    font-size: 20px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+.input-text input::placeholder {
+    color: #a1a1a1;
+}
+.input-text input:focus {
+    border: none;
+}

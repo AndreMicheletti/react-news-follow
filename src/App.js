@@ -6,16 +6,6 @@ import './App.css';
 
 class App extends Component {
 
-  state = {
-    showForm: false
-  };
-
-  renderForm() {
-    if (this.state.showForm) {
-      return (<FollowForm />);
-    }
-  }
-
   toogleForm() {
     const { showForm } = this.state;
     this.setState({ showForm: !showForm})
@@ -29,13 +19,13 @@ class App extends Component {
         </div>
         <div className="app-container">
           <div className="app">
-            {this.renderForm()}
+            <FollowForm />
             <TopHeadlines/>
             <FollowHeadlines onAddClick={this.toogleForm.bind(this)}/>
           </div>
         </div>
         <div className="app-footer">
-          <h2>Powered by <a href="https://newsapi.org/">NewsAPI.org</a></h2>
+          <h2>Powered by <a href="https://newsapi.org/" target="_blank" rel="noopener noreferrer">NewsAPI.org</a></h2>
         </div>
       </div>
     );
