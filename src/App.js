@@ -6,9 +6,17 @@ import './App.css';
 
 class App extends Component {
 
-  toogleForm() {
-    const { showForm } = this.state;
-    this.setState({ showForm: !showForm})
+  state = {
+    following: ''
+  };
+
+  onAddFollow(follow) {
+    console.log(follow);
+    this.setState({ following: follow })
+  }
+
+  changeFollowing(newWord) {
+    this.setState({ following: newWord });
   }
 
   render() {
@@ -19,9 +27,9 @@ class App extends Component {
         </div>
         <div className="app-container">
           <div className="app">
-            <FollowForm />
+            <FollowForm onAddClick={this.onAddFollow.bind(this)}/>
             <TopHeadlines/>
-            <FollowHeadlines onAddClick={this.toogleForm.bind(this)}/>
+            <FollowHeadlines following={this.state.following} changeFollowing={this.changeFollowing.bind(this)}/>
           </div>
         </div>
         <div className="app-footer">

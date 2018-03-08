@@ -8,7 +8,7 @@ const API = {
     return await result.json();
   },
   getByQuery: async (categoryName) => {
-    let result = await fetch(`${BASE_URL}everything?q=${categoryName}&apiKey=${KEY}`).json();
+    let result = await fetch(`${BASE_URL}everything?q=${categoryName}&apiKey=${KEY}`);
     return await result.json();
   },
   getLatest: async () => {

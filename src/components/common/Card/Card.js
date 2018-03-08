@@ -1,15 +1,15 @@
 import React from 'react';
 import './Card.css'
 
-const Card = (props = defaultProps) => {
+const Card = ({ title, headerLeft, className, children, ...props} = defaultProps) => {
   return (
-    <div className={`main-card ${props.className}`}>
+    <div className={`main-card ${className}`}>
       <div className="main-card-header">
-        <h2>{props.title}</h2>
+        <h2>{title}</h2>
         <div className="ruler" />
-        {props.headerLeft}
+        {headerLeft}
       </div>
-      {props.children}
+      {children}
     </div>
   )
 };
