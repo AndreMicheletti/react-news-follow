@@ -2,6 +2,10 @@ import React from 'react';
 import { Button, Card, Headline, Keyword } from './common';
 import API from "../services";
 
+// REDUX
+import { connect } from 'react-redux';
+import { updateFollowInput, removeFollow } from '../store/actions';
+
 class FollowHeadlines extends React.PureComponent {
 
   state = {
@@ -35,6 +39,13 @@ class FollowHeadlines extends React.PureComponent {
     }
   }
 
+  renderFollowTags() {
+    const { followTags, removeFollow } = this.props;
+    return followTags.map((tag) => {
+      return <Keyword key={tag} word={tag} onRemove={() => removeFollow(tag)}/>
+    })
+  }
+
   render() {
     const { following, changeFollowing } = this.props;
     const { articles } = this.state;
@@ -47,7 +58,7 @@ class FollowHeadlines extends React.PureComponent {
             Reload
           </Button>)}>
         <div className="keywords">
-          {following && <Keyword word={following} onRemove={changeFollowing}/>}
+          {this.renderFollowTags()}
         </div>
         <div className="card-scroll">
           {this.renderHeadlines()}
@@ -57,4 +68,11 @@ class FollowHeadlines extends React.PureComponent {
   }
 }
 
-export default FollowHeadlines;
+const mapStateToProps = (storeState) => {
+  return {
+    followTags: storeState.followTags,
+    followInput: storeState.followInput
+  };
+};
+
+export default connect(mapStateToProps, { updateFollowInput, removeFollow })(FollowHeadlines);

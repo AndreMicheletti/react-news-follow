@@ -1,0 +1,4 @@
+
+export const INPUT_FOLLOW_UPDATE = 'INPUT_FOLLOW_UPDATE';
+export const ADD_FOLLOW = 'ADD_FOLLOW';
+export const REMOVE_FOLLOW = 'REMOVE_FOLLOW';
