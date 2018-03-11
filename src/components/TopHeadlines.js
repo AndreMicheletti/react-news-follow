@@ -4,30 +4,22 @@ import {
   Card,
   Button
 } from "./common";
-import API from '../services';
+
+import { fetchTopHeadlines } from "../store/actions";
+import { connect } from 'react-redux';
 
 class TopHeadlines extends React.Component {
 
-  state = { articles: [] };
+  componentWillMount() { this.loadTopHeadlines(); }
 
-  componentWillMount() {
-    this.loadTopHeadlines();
-  }
-
-  loadTopHeadlines() {
-    this.setState({ articles: [] });
-    API.getLatest().then((body) => {
-      console.log(body);
-      this.setState({ articles: body.articles });
-    });
-  }
+  loadTopHeadlines() { this.props.fetchTopHeadlines(); }
 
   renderHeadlines() {
-    const { articles } = this.state;
-    if (articles.length <= 0) {
+    const { topHeadlines } = this.props;
+    if (topHeadlines === undefined || topHeadlines.length <= 0) {
       return (<p>Loading...</p>)
     } else {
-      return articles.map((article, i) => {
+      return topHeadlines.map((article, i) => {
         return (<Headline key={i} {...article}/>)
       })
     }
@@ -50,4 +42,10 @@ class TopHeadlines extends React.Component {
   }
 }
 
-export default TopHeadlines;
+const mapStateToProps = ({ data }) => {
+  return {
+    topHeadlines: data.topHeadlines
+  }
+};
+
+export default connect(mapStateToProps, { fetchTopHeadlines })(TopHeadlines);

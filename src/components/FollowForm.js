@@ -4,20 +4,18 @@ import categories from '../categories';
 
 // REDUX
 import { connect } from 'react-redux';
-import { updateFollowInput, addFollow } from '../store/actions';
+import { updateFollowInput, addFollow, fetchFollowHeadlines } from '../store/actions';
 
 class FollowForm extends React.PureComponent {
-  state = {
-    followInput: ''
-  };
 
-  onAddHandler() {
-    this.props.onAddClick(this.state.followInput);
-    this.setState({ followInput: '' })
+  onAddClick(text) {
+    const { fetchFollowHeadlines, addFollow } = this.props;
+    addFollow(text);
+    fetchFollowHeadlines(text);
   }
 
   render() {
-    const { followInput, updateFollowInput, addFollow } = this.props;
+    const { followInput, updateFollowInput } = this.props;
     const { wrapperDiv, flexDiretion } = styles;
     return (
       <Card title={"Add a category or keyword to keep track of"} className="follow-form">
@@ -31,7 +29,7 @@ class FollowForm extends React.PureComponent {
             />
             <Dropdown items={categories}/>
           </div>
-          <Button size="large" textInputSubmit={true} onClick={() => addFollow()}>
+          <Button size="large" textInputSubmit={true} onClick={() => this.onAddClick(followInput)}>
             Add
           </Button>
         </div>
@@ -51,11 +49,11 @@ const styles = {
   }
 };
 
-const mapStateToProps = (storeState) => {
+const mapStateToProps = ({ data }) => {
   return {
-    followTags: storeState.followTags,
-    followInput: storeState.followInput
+    followTags: data.followTags,
+    followInput: data.followInput
   }
 };
 
-export default connect(mapStateToProps, { updateFollowInput, addFollow })(FollowForm);
+export default connect(mapStateToProps, { updateFollowInput, addFollow, fetchFollowHeadlines })(FollowForm);

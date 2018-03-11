@@ -1,60 +1,44 @@
 import React from 'react';
 import { Button, Card, Headline, Keyword } from './common';
-import API from "../services";
 
 // REDUX
 import { connect } from 'react-redux';
-import { updateFollowInput, removeFollow } from '../store/actions';
+import { updateFollowInput, removeFollow, fetchFollowHeadlines } from '../store/actions';
 
 class FollowHeadlines extends React.PureComponent {
 
-  state = {
-    articles: null
-  };
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.following) {
-      this.loadFollowHeadlines(nextProps);
-    }
-  }
-
-  loadFollowHeadlines({ following }) {
-    this.setState({ articles: [] });
-    API.getByQuery(following).then((body) => {
-      console.log(body);
-      this.setState({ articles: body.articles });
-    });
+  loadFollowHeadlines() {
+    this.props.fetchFollowHeadlines(this.props.followTag);
   }
 
   renderHeadlines() {
-    const { articles } = this.state;
-    if (articles === null) {
+    const { followHeadlines } = this.props;
+    if (followHeadlines === null) {
       return (<p>Type something and click add</p>)
-    } else if (articles.length <= 0) {
+    } else if (followHeadlines.length <= 0) {
       return (<p>Loading...</p>)
     } else {
-      return articles.map((article, i) => {
+      return followHeadlines.map((article, i) => {
         return (<Headline key={i} {...article}/>)
       })
     }
   }
 
   renderFollowTags() {
-    const { followTags, removeFollow } = this.props;
-    return followTags.map((tag) => {
-      return <Keyword key={tag} word={tag} onRemove={() => removeFollow(tag)}/>
-    })
+    const { followTag, removeFollow } = this.props;
+    if (followTag !== '') {
+      return <Keyword word={followTag} onRemove={() => removeFollow()}/>
+    }
   }
 
   render() {
-    const { following, changeFollowing } = this.props;
-    const { articles } = this.state;
+    const { followHeadlines } = this.props;
     return (
       <Card
         title="This is follow headlines"
         className="follow-headlines"
-        headerLeft={articles &&
-          (<Button onClick={() => this.loadFollowHeadlines({ following })}>
+        headerLeft={followHeadlines &&
+          (<Button onClick={() => this.loadFollowHeadlines()}>
             Reload
           </Button>)}>
         <div className="keywords">
@@ -68,11 +52,16 @@ class FollowHeadlines extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (storeState) => {
+const mapStateToProps = ({ data }) => {
   return {
-    followTags: storeState.followTags,
-    followInput: storeState.followInput
+    followTag: data.followTag,
+    followInput: data.followInput,
+    followHeadlines: data.followHeadlines
   };
 };
 
-export default connect(mapStateToProps, { updateFollowInput, removeFollow })(FollowHeadlines);
+export default connect(mapStateToProps, {
+  updateFollowInput,
+  removeFollow,
+  fetchFollowHeadlines
+})(FollowHeadlines);
